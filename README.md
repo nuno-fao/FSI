@@ -1,9 +1,8 @@
-
 Breve descrição do grupo
 
-* Turno: [LM]XX
-* Grupo: YY
+* Turno: M03
+* Grupo: 09
 * Alunos:
-    - Aluno1 upZZZZZ 
-    - Aluno2 upZZZZZ
-    - Aluno3 upZZZZZ
+    - Nuno Oliveira up201806525 
+    - Daniel Gonçalves up201809384
+    - Pedro Miguel up201806083
