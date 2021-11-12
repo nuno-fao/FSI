@@ -32,6 +32,21 @@ Assim, como conclusão, é possível passar variáveis ambiente através do `exe
 
 **:: Tarefa 4 ::**
 
+Tal como listado no guião, foi executado o código listado, utilizando a função `system()`. O programa executado (`"/usr/bin/env"`), tal como listado na Tarefa 3, é responsável por imprimir as variáveis ambiente neste mesmo. 
+
+Ora, após a execução, constatamos que, de facto, chamando a função `system()` as variáveis foram impressas como esperado. A imagem seguinte, comprova este facto:
+
+
+![SystemTest](/images/systemtest.png)
+
+
+**:: Tarefa 5 ::**
+
+
+
+
+**:: Tarefa 6 ::**
+
 
 -----------
 ## CTF - Logbook
@@ -50,19 +65,19 @@ Felizmente podemos também encontrar neste site um exploit para explorar esta vu
 ### Explorar a vulnerabilidade
 Sendo que o exploit era um simples script de python, depois de o baixar bastou correr e obtemos os seguintes resultados:
 
-![Links Generated](/images/links_generated.png)
+[Links Generated](/images/links_generated.png)
 
 Segundo o autor do script, um destes links deve permitir aceder ao site como admin e assim foi:
 
-![Admin Log](/images/authentication.png)
+[Admin Log](/images/authentication.png)
 
 De seguida acedemos ao site indicado no moodle do ctf:
 
-![Posts](/images/posts.png)
+[Posts](/images/posts.png)
 
 E encontramos a flag dentro duma das mensagens:
 
-![Flag](/images/flag.png)
+[Flag](/images/flag.png)
 
 
 
