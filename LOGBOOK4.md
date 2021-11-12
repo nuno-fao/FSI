@@ -11,3 +11,14 @@ Adicionamos também uma variável ambiente de teste ('yo') através do comando `
 ![PrintEnv](/images/export_unset.png)
 
 
+**::Tarefa 2::**
+
+Seguimos os procedimentos indicados no guião. Utilizando o ficheiro `myprintenv.c` fornecido, procedemos à sua compilação através do `gcc`. De seguida, executamos o código duas vezes, um com o print das variáveis a ser feito no processo pai, e outra execução do lado do processo filho. O output foi guardado em dois ficheiros, cuja comparação é a seguinte:
+
+![ForkTest](/images/forkoutputcomparison.png)
+
+Com estes dados concluímos que ambos os processos gerados por `fork()` mantêm as mesmas variáveis ambiente que as do processo que os criou. 
+
+-----------
+## CTF - Logbook
+
