@@ -42,7 +42,12 @@ Ora, após a execução, constatamos que, de facto, chamando a função `system(
 
 **:: Tarefa 5 ::**
 
+Após execução dos passos indicados no guião, foram colocadas três variáveis ambiente, tendo dado append aos conteudos da `LB_LIBRARY_PATH` e o `PATH` por forma a preservar a estabilidade do OS. Quando foi executado o programa no final, constatamos que os conteúdos da variável ambiente `LB_LIBRARY_PATH` tinha sido eliminados. 
 
+Concluímos que tal resultado se deve a um mecanismo de segurança do sistema operativo, por forma a prevenir que usuários normais, sem permissões, possam desempenhar o papel de root e executar libraries maliciosas. 
+
+Segue-se a seguinte imagem que comprova os resultados indicados:
+![Task5](/images/task6process.png)
 
 
 **:: Tarefa 6 ::**
