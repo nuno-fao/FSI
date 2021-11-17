@@ -70,19 +70,19 @@ Felizmente podemos também encontrar neste site um exploit para explorar esta vu
 ### Explorar a vulnerabilidade
 Sendo que o exploit era um simples script de python, depois de o baixar bastou correr e obtemos os seguintes resultados:
 
-[Links Generated](/images/links_generated.png)
+![Links Generated](/images/links_generated.png)
 
 Segundo o autor do script, um destes links deve permitir aceder ao site como admin e assim foi:
 
-[Admin Log](/images/authentication.png)
+![Admin Log](/images/authentication.png)
 
 De seguida acedemos ao site indicado no moodle do ctf:
 
-[Posts](/images/posts.png)
+![Posts](/images/posts.png)
 
 E encontramos a flag dentro duma das mensagens:
 
-[Flag](/images/flag.png)
+![Flag](/images/flag.png)
 
 
 
