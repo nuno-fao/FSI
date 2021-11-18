@@ -52,6 +52,19 @@ Segue-se a seguinte imagem que comprova os resultados indicados:
 
 **:: Tarefa 6 ::**
 
+Esta tarefa toma como partida o reconhecimento da utilidade da variável ambiente "PATH". Esta variável terá, como consequência, a localização de onde são "levantadas" as libraries. A ordem de leitura é feita sequêncialmente pelas sucessivas variáveis, pelo que, dado o objetivo desta tarefa, para substituirmos o comando shell `ls`, teremos que colocar o diretório da nossa nova versão do `ls` (possívelmente maliciosa), no início da PATH.
+
+Para tal criamos um ficheiro `ls.c`, guardado em `/home/seed/Documents` que foi posteriormente compilado com o comando `gcc ls.c -o ls`. Isto produz um ficheiro binário, compilado, cujo nome será `ls`. Este procedimento encontra-se assinalado na imagem abaixo:
+
+![Task6](/images/1_T6_1.png)
+
+Na mesma imagem acima, notamos que foi adicionada à variável PATH, no ínicio, a localização do ficheiro de execução `ls`. Tal ação, resulta em que o nosso ls seja selecionado, antes do "default" `ls`, dado que a leitura do PATH é feita sequêncialmente, começando pelos primeiros diretórios listados.
+
+De seguida, realizamos um procedimento semelhante à Tarefa 5, compilando o código dado no guião, que executa o chamada: `system("ls");` e tornando o programa num SET-UID program. A imagem abaixo ilustra a execução:
+
+![Task6](/images/1_T6_3.png)
+
+Finalmente, executando o programa task6.c (compilado na imagem acima), visualizamos a execução do nosso novo ls, em vez do "ls" pré-definido. As conclusões obtidas é que o SET-UID e a variável PATH, levam a condições de insegurança que devem exigir grandes cuidados. Isto porque permite a um utilizador qualquer redefinir o seu próprio PATH e executar um programa SET-UID, com os comandos de root (caso o owner seja definido como tal). De um simples utilizador, passamos a ter um utilizador que tem poder absoluto sobre a máquina e que pode realizar o que bem entender.
 
 -----------
 ## CTF - Logbook
