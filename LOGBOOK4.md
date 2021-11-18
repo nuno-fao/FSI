@@ -66,6 +66,47 @@ De seguida, realizamos um procedimento semelhante à Tarefa 5, compilando o cód
 
 Finalmente, executando o programa task6.c (compilado na imagem acima), visualizamos a execução do nosso novo ls, em vez do "ls" pré-definido. As conclusões obtidas é que o SET-UID e a variável PATH, levam a condições de insegurança que devem exigir grandes cuidados. Isto porque permite a um utilizador qualquer redefinir o seu próprio PATH e executar um programa SET-UID, com os comandos de root (caso o owner seja definido como tal). De um simples utilizador, passamos a ter um utilizador que tem poder absoluto sobre a máquina e que pode realizar o que bem entender.
 
+
+**:: Tarefa 7 ::**
+
+Começamos por realizar os passos iniciais do guião, criando um ficheiro mylib.c e compilando com os comandos indicados, sendo estes:
+
+`gcc -fPIC -g -c mylib.c` - As flags têm os seguintes significados: -fpic (dynamic linking, código de posição independente) | -g (debugging) | -c (compilar, mas sem dar linking)
+
+`gcc -shared -o libmylib.so.1.0.1 mylib.o -lc` - As flags têm os seguintes significados: -shared (pode ser partilhado por outros objetos para formar uma library) | -o (produz o output do ficheiro)
+
+Realizamos também o pedido feito pelo guião de adicionar este executável à LD_PRELOAD:
+
+`export LD_PRELOAD=./libmylib.so.1.0.1`
+
+A imagem representa os passos realizados: 
+
+![Task7](/images/T7_1.png)
+
+De seguida, criamos um ficheiro `myprog.c` que faz uso da função sleep() definida no `mylib.c`. O processo também se encontra ilustrado abaixo:
+
+![Task7](/images/T7_2.png)
+
+No entanto, de uma forma mais costumizada, decidimos adicionar a linha: `system("env | grep LD")` ao myprog.c, que nos indicará as variáveis, no ambiente de execução. Isto facilita o trabalho. Foi então executado o programa de imediato, testando a primeira condição exigida no enunciado:
+
+![Task7](/images/T7_3.png)
+
+Pela imagem acima, constatamos que a nossa função `sleep()` foi executada com o utilizador em ambiente normal, e que a LD_PRELOAD environmental variable se encontrava disponível.
+
+Realizando o segundo teste pedido, tornamos o programa SET-UID em modo root user, com os resultados abaixo onde se pode facilmente verificar que o printf() do nosso sleep não foi executado. No entanto, o sleep() da library standard foi executado no lugar do nosso. Note-se, ainda, que a variável ambiente LD_PRELOAD já não está presente! A imagem abaixo contasta estes resultados:
+
+![Task7](/images/T7_4.png)
+
+Partimos para o terceiro teste, onde mantivemos o programa em SET-UID, com o mesmo owner: o root. Apenas passamos a batch para root com o comando: `sudo bash`. Executando, verificamos que o nosso sleep() foi executado e que a variável ambiente LD_PRELOAD continuava lá.
+
+![Task7](/images/T7_5.png)
+
+Finalmente, mudamos o owner para um utilizador normal e executamos o programa nesse mesmo utilizador. Verificaram-se os mesmos resultados que na imagem acima, mas fica a seguinte imagem como comprovação:
+
+![Task7](/images/T7_6.png)
+
+Tendo todos estes resultados em mente, podemos concluír que a variável ambiente LD_PRELOAD permanece ativa se o utilizador que executa o programa SET-UID, for o mesmo que o owner. Caso contrário, por uma questão de segurança, esta variável é imediatamente eliminada. No terceiro e último caso, como os owners eram os utilizadores a executar o programa, a variável LD_PRELOAD permaneceu nos ambientes de execução. Já no segundo, esta condição não se verifica, pelo que a variável é imediatamente eliminada por questão de segurança, impedindo que um utilizador possa "abusar" dos previlégios adquiridos com o SET-UID. Finalmente, o primeiro caso é um subconjunto do terceiro e último caso, onde, por default, o owner é o próprio utilizador. Todavia, dada a inexistência da SET-UID flag, este mecanismo de segurança não é colocado em prática.
+
 -----------
 ## CTF - Logbook
 
