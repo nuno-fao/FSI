@@ -107,6 +107,30 @@ Finalmente, mudamos o owner para um utilizador normal e executamos o programa ne
 
 Tendo todos estes resultados em mente, podemos concluír que a variável ambiente LD_PRELOAD permanece ativa se o utilizador que executa o programa SET-UID, for o mesmo que o owner. Caso contrário, por uma questão de segurança, esta variável é imediatamente eliminada. No terceiro e último caso, como os owners eram os utilizadores a executar o programa, a variável LD_PRELOAD permaneceu nos ambientes de execução. Já no segundo, esta condição não se verifica, pelo que a variável é imediatamente eliminada por questão de segurança, impedindo que um utilizador possa "abusar" dos previlégios adquiridos com o SET-UID. Finalmente, o primeiro caso é um subconjunto do terceiro e último caso, onde, por default, o owner é o próprio utilizador. Todavia, dada a inexistência da SET-UID flag, este mecanismo de segurança não é colocado em prática.
 
+
+**:: Tarefa 8 ::**
+
+Começamos por compilar o ficheiro `catall.c` fornecido no guião. De seguida atribuimos o owner do executável como sendo o `root` e depois tornamos este programa num SET-UID program. Para o efeito, corremos um simples teste para verificar que, de facto, um ficheiro por nós criado (`superfile`) era mostrado corretamente. A imagem abaixo ilustra os resultados obtidos nesta simples fase inicial:
+
+![Task7](/images/T8_1.png)
+
+De seguida, testamos o acesso através de um utilizador normal, usando `su noob`. Tal como anteriormente, o programa era executado corretamente, mostrando os conteúdos do ficheiro `superfile` passado como argumento. No entanto, sendo este argumento lido pelo `system()` call, passamos o seguinte conteúdo como argumento: "`superfile;/bin/sh`". Isto resulta na pesquisa do ficheiro, mas, dado o system() call, ele posteriormente executa o executável `/bin/sh` que abre a shell necessária. Dentro desta shell, podiamos ter acesso equivalente ao `root`, que nos permitiu eliminar o ficheiro. A imagem abaixo ilustra esses resultados:
+
+![Task7](/images/T8_2.png)
+
+De seguida, todos estes procedimentos foram realizados sob o mesmo ambiente que os dois últimos procedimentos, mas comentando o `system()` e utilizando antes `execve()`. Neste caso, a vulnerabilidade / ataque do passo anterior já não resultou, tendo a shell iniciado com permissões não pertencentes ao `root`. As duas imagens abaixo ilustram este evento:
+
+![Task7](/images/T8_3.png)
+
+![Task7](/images/T8_4.png)
+
+As conclusões obtidas nestes processos, permitem concluír dois aspetos:
+
+Primeiro, a leitura de uma string por parte do `system()` (por exemplo: "echo Hello;/bin/sh"), não é vista como um único argumento. O System, por si mesmo, quebra a cada marcação do character ";", realizando os comandos individualmente. Já o `execve()` trata a string como um argumento único, não quebrando em comandos individuais. Ou seja, esta última alternativa possuí procedimentos cuidadosos, ao contrário do `system()` que permite o tratamento de dados sem a sua verificação.
+
+Segundo, o `execve()` substitui o processo, pelo indicado, eliminando assim a possibilidade do user normal ser visto como o `root` user quando executa um comando SET-UID que tem permite chamadas externas usando `execve()`.
+
+
 -----------
 ## CTF - Logbook
 
