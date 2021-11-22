@@ -2,12 +2,43 @@
 
 ## Tarefa 1
 
+Executamos o código indicado, resultando na abertura de uma shell no código sem qualquer problema. A compilação foi também realizada com as devidas desativações dos mecanismos de segurança do Ubuntu.
+
+O código resume-se a fazer um simples teste, onde, alocamos um buffer e colocamos uma shell code no seu interior. De seguida, declaramos uma função cujo endereço de "execução" é igual ao buffer que criamos. O que resulta, é que quando chamamos a função, é executado o código da stack, onde haviamos guardado o buffer. Sendo a CPU responsável por ler toda e cada instrução no shellcode. 
+
 ## Tarefa 2
+
+(To detail)
 
 ## Tarefa 3
 
-(Will have content here very soon)
+Começamos por fazer o estudo do programa correndo o debugger associado ao gcc. Tal como sugerido no guião, colocamos um breakpoint no ponto de entrada da função bof() e corremos o programa. Seguido de um comando "next" procuramos obter o endereço no registo `$ebp` e do `&buffer` associado ao nosso código. Procuramos, ainda, obter o resultado inteiro da subtração entre os dois endereços. O resultado apresenta-se em inteiro, sem qualquer formato hexadecimal.
 
+Assim, relativamente à nossa máquina, os nossos resultados foram:
+
+![BufferOverflow](/images/BufferOverflow_1.png)
+
+Relativamente à criação de um "badfile" que causaria um bufferoverflow attack, utilizamos o python script indicado, com a seguinte shellcode:
+
+![BufferOverflow](/images/BufferOverflow_3.png)
+
+A decisão dos valores no script python seguem a seguinte lógica:
+
+Dado que o frame pointer se encontra no endereço 0xFFFFEB38 então o endereço de retorno encontra-se no endereço 0xFFFFEB38 + 4. Assim, o endereço a que podemos saltar será o 0xFFFFEB38 + 8. Temos, ainda, de descobrir onde colocar o nosso endereço de retorno, no input do badfile, de forma a ficar colocado no endereço de retorno da stack. Para tal fazemos a diferença entre o ebp e o buffer, obtendo `108`. Ora o resultado está na imagem, e sabemos que pela arquitetura 32-bits (dado que é um registo `$ebp`), o endereço de retorno será de 4 bytes acima de onde o registo `$ebp` termina. Ora, assim, a distância entre o oendereço de retorno e o início do buffer será realmente 108 + 4 = 112. 
+
+Ora, assim, no python file, theremos: 
+
+Offset = 112
+Ret = 0XFFFFCBB0 (Dado que o código foi executado com gdb, a stack poderá estar bem acima, logo, teremos: 0xFFFFEB38 + 120 (~))
+Start = 517 - len(shellcode) (Queremos que a shellcode esteja no final - O resto serão NOPs)
+
+Assim, os dados no python file serão:
+
+![BufferOverflow](/images/BufferOverflow_4.png)
+
+Cujo resultado leva a:
+
+![BufferOverflow](/images/BufferOverflow_2.png)
 
 ## CTF - Logbook
 
