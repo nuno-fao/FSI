@@ -8,7 +8,9 @@ O código resume-se a fazer um simples teste, onde, alocamos um buffer e colocam
 
 ## Tarefa 2
 
-(To detail)
+Em seguimento do que foi pedido pelo guião, procedemos à compilação do código em C fornecido, aplicando o respetivo programa a um SET-UID e mudando a ownership do programa para o root antes de o tornar num SET-UID. 
+
+Não se registaram quaisquer informações dignas de registo.
 
 ## Tarefa 3
 
