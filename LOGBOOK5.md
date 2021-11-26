@@ -10,7 +10,7 @@ O código resume-se a fazer um simples teste, onde, alocamos um buffer e colocam
 
 Em seguimento do que foi pedido pelo guião, procedemos à compilação do código em C fornecido, aplicando o respetivo programa a um SET-UID e mudando a ownership do programa para o root antes de o tornar num SET-UID. 
 
-Não se registaram quaisquer informações dignas de registo.
+Não se registaram quaisquer ocorrências dignas de uma análise profunda, dado que já é um processo repetido da semana anterior.
 
 ## Tarefa 3
 
