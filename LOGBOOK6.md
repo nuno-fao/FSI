@@ -6,3 +6,10 @@ Como tarefa inicial tinhamos então que crashar o servidor usando com "format st
 ![semana6_t1](images/semana6_t1.png)
 
 ## Tarefa 2
+Nesta tarefa temos que usar o format string para imprimir o valor de variaveis tanto na stack como na heap.
+
+### stack
+Para isto apenas precisamos de fornecer uma string com uns caracteres cujos valores são faceis de identificar em hexadecimal '%.8x'. Fornecemos então '@@@@' (hexadecimal 40404040) seguidos de multiplos '%.x' para imprimir os vários endereços e valores.
+Analisando o output do programa verificamos que a uma distancia de 64 posições encontramos o valor da de '@@@@' o que indica que é necessário 64 'format specifiers' para imprimir os primeiros 4 bytes do nosso input
+
+### heap
