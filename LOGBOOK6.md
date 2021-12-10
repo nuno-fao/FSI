@@ -58,11 +58,11 @@ Assim, temos o resultado abaixo:
 
 ## Desafio 1
  
-Neste primeiro desafio pretendemos obter a flag que está guardada numa variavel global. Para tal precisamos de obter o seu endereço para conseguer ler o seu valor através de um string format attack.
+Neste primeiro desafio pretendemos obter a flag que está guardada numa variavel global. Para tal precisamos de obter o seu endereço para conseguir ler o seu valor através de um string format attack.
 Usando gdb:
 ![address](images/ctf6d1_address.png)
 
-De seguida apenas precisamos então de usar o string format para ler o valor dp endereço:
+De seguida apenas precisamos então de usar o string format para ler o valor do endereço:
 
 ![string](images/ctf6d1_input.png)
 
@@ -79,7 +79,7 @@ Para isso precisamos novamente de obter o endereço da variavel:
 
 ![address](images/ctf6d2_keyaddress.png)
 
-E enviar um input deste género para que a variavel fique com o valor desejavel (precisamos de enviar primeiro um endereço aliatório porque o %n tenta escrever no segundo endereço na stack):
+E enviar um input deste género para que a variavel fique com o valor desejavel (precisamos de enviar primeiro um endereço aleatório porque o %n tenta escrever no segundo endereço na stack):
 
 ![payload](images/ctf6d2_payload.png)
 
