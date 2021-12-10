@@ -54,3 +54,38 @@ Assim, temos o resultado abaixo:
 
 ![semana6_t2](images/T6_T3-4_10.png)
 
+# CTF 6 #
+
+## Desafio 1
+ 
+Neste primeiro desafio pretendemos obter a flag que está guardada numa variavel global. Para tal precisamos de obter o seu endereço para conseguer ler o seu valor através de um string format attack.
+Usando gdb:
+![address](images/ctf6d1_address.png)
+
+De seguida apenas precisamos então de usar o string format para ler o valor dp endereço:
+
+![string](images/ctf6d1_input.png)
+
+Que nos permite então visualizar a flag:
+
+![flag](images/ctf6d1_flag.png)
+
+## Desafio 2
+
+No segundo desafio tinhamos que alterar o valor de uma variavel para que possamos ter acesso ao ficheiro que continha a flag.
+Mais precisamente precisavamos de alterar a variavel key para o valor hexadecimal 0xbeef (48879 em decimal) o que é também possivel com um ataque de string format usando %n
+
+Para isso precisamos novamente de obter o endereço da variavel:
+
+![address](images/ctf6d2_keyaddress.png)
+
+E enviar um input deste género para que a variavel fique com o valor desejavel (precisamos de enviar primeiro um endereço aliatório porque o %n tenta escrever no segundo endereço na stack):
+
+![payload](images/ctf6d2_payload.png)
+
+E obtemos finalmente a flag:
+![flag](images/ctf6d2_flag.png)
+
+
+
+
