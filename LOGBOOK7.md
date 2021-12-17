@@ -19,7 +19,9 @@ Para este desafio, é primeiro necessário encontrar um ponto de contact com o u
 Só nos resta enviar um comando que nos permita dar o ping sem erro e, ao mesmo tempo, ler o conteudo do ficheiro que contem a flag.
 
 Para tal um input deste género chega:
+
 ![d2 input](images/ctf7d2_injection.png)
 
 E assim obtemos a segunda flag:
+
 ![d2 flag](images/ctf7d2_flag.png)
