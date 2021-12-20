@@ -16,6 +16,8 @@ b) Foi feito o mesmo que na alínea a), mas substituindo os campos por %27 ('), 
 
 ![T2b](images/T_4_89.png)
 
+c) A counter-measure in-place provém do mysqli:query() não permitir multiple queries no mesmo comando. To overcome this, we could have used the multiquery() instead.
+
 ## Task 3
 
 a) Para cumprir o requisito, apenas substituimos o campo de "phone number" (o último antes de password), para:
