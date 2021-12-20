@@ -1,3 +1,38 @@
+# Tarefas #
+
+## Task 1
+
+Realizamos um query em formato SQL, por forma a obter a informação da Alice, o processo foi o seguinte:
+
+![T1](images/T_1_89.png)
+
+## Task 2
+
+a) Para obter sucesso nesta situação, apenas colocamos um # no campo do $username, permitindo que o resto do comando SQL enviado para o mysql fosse comentado, isto assim tornaria o query realizado essentialmente num: SELECT * FROM WHERE name = 'admin'. A imagem acima representa os campos, com a password sendo qualquer valor.
+
+![T2a](images/T_3_89.png)
+
+b) Foi feito o mesmo que na alínea a), mas substituindo os campos por %27 ('), %20 ( ) e %23 (#) no query, essentialmente o resultado foi:
+
+![T2b](images/T_4_89.png)
+
+## Task 3
+
+a) Para cumprir o requisito, apenas substituimos o campo de "phone number" (o último antes de password), para:
+
+666' salary = 1000 WHERE name = 'alice #' (o '#' apaga os conteúdos para a frente, especificamente o 'password'). Os resultados foram:
+
+![T3a](images/T_5_89.png)
+
+Que levou a:
+
+![T3a](images/T_6_89.png)
+
+b) Seguiu-se um efeito idêntico ao da alínea anterior, mas com "bobby" no nome e os restantes campos sendo adequados aos dados já existentes no user bobby:
+
+![T3a](images/T_7_89.png)
+
+
 # CTF #
 
 ## Desafio 1
