@@ -47,3 +47,18 @@ Respondendo às questões colocadas:
 **Questão 1:** As linhas ➀ e ➁ no template script do guião permitem a obtenção dos dados especificos a serem enviados e provávelmente recebidos do lado do servidor (e confirmados). O ts refere à timestamp e o token certamente se refere ao CSRF token, que é único por utilizador, e que depois é confirmado pelo servidor.
 
 **Questão 2:** Seria impossível, dado que os characters especiais são codificados, renderizando qualquer tentativa de XSS numa tentativa estéril. Por exemplo, '<' tornar-se-ia &lt, o que é essencial para criar um script. Existem, todavia, outros métodos de correção: O que seria do StackOverflow se bloqueasse todos os characters especiais ... ? 
+
+# CTF #
+
+## Desafio 1
+Para resolver este desafio apenas precisavamos de descobrir como fazer com que o admin carregasse no botão de "give flag" em vez do "mark as read" (botão que carrega por default).
+
+Isto é facilmente feito submetendo no formulário de submissão do pedido, submetendo um simples código javascript que força o admin a carregar no botão que queremos.
+
+Como podemos ver com este input:
+
+![d1 input](images/ctf10d1_input.png)
+
+Quando o admin tentar processar o input, o javascript irá clickar no botão que queremos e assim iremos receber a flag:
+
+![d1 flag](images/ctf10d1_flag.png)
