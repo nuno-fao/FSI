@@ -54,4 +54,4 @@ Utilizou-se o repositório default, ou seja, o bank32 que já vinha incorporado 
 
 Utilizou-se o resultado utilizado na Tarefa 1, mas desta vez utilizando a chave deste, isto permitiu-nos que, desta vez, ao aceder ao https do example.com, o seguinte fosse apresentado, mostrando o funcionamento pretendido:
 
-![T1](images/L/working.png.png)
+![T1](images/L/working.png)
