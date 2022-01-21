@@ -62,3 +62,17 @@ Como podemos ver com este input:
 Quando o admin tentar processar o input, o javascript irá clickar no botão que queremos e assim iremos receber a flag:
 
 ![d1 flag](images/ctf10d1_flag.png)
+
+## Desafio 2
+Neste desafio precisamos de encontrar uma vulnerabilidade no código que nos permita ler a flag que se encontra noutro ficheiro. A vulnerabilidade está na chamada ao gets() para um buffer de 100 bytes que não é segura o que nos permite um ataque por buffer overflow.
+
+Assim precisamos de criar uma payload que nos permita abrir uma shell para ler o conteudo do ficheiro que contem a flag. A payload terá então o shell code, 'dummy bytes' para encher o buffer (neste caso \x11) e o endereço do buffer:
+
+![d2 exploit](images/ctf10d2_exploit.png)
+
+Correndo o exploit podemos então usar o comando cat para ler a flag
+![d2 flag](images/ctf10d2_flag.png)
+
+
+
+
