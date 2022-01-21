@@ -35,3 +35,23 @@ Criou-se um pedido de key request através do seguinte comando tal como indicado
 De seguida, com o request gerou-se o certificado para o servidor utilizando o seguinte comando (isto tendo em conta os resultados de T1):
 
 ![T1](images/L/Screenshot%202022-01-21%20at%2015.33.35.png)
+
+## Task 4
+
+Seguindo os passos do guião, foi utilizada a pasta "volumes" no diretório do github utilizado para este trabalho, por forma a guardar os dados dos nossos certificados. Isto permitiu a que o servidor apache conseguisse aceder a estes certificados. Para tal, acedemos ao terminal do component do docker e iniciamos o apache através deste (isto já com o cfg file atualizado para considerar os dados no "volume"). Com isto, o resultado que obtivemos utilizando um HTTPS, foi: 
+
+![T1](images/L/Screenshot%202022-01-21%20at%2016.17.19.png)
+
+Permitiu-nos, assim, aceder ao nosso website.
+
+## Task 5
+
+Utilizou-se o repositório default, ou seja, o bank32 que já vinha incorporado no docker. Através da mudança do ficheiro /etc/host, notamos no seguinte resultado quando tentavamos aceder ao www.example.com. Ou seja, acediamos ao nosso index e não index estipulado pelo www.example.com. Notamos que, todavia, este resultado só era produzido no servidor com porta 80 (non-http).
+
+![T1](images/L/Screenshot%202022-01-21%20at%2016.37.28.png)
+
+## Task 6
+
+Utilizou-se o bank32 como default outra vez, mas desta vez utilizando a chave deste, isto permitiu-nos aceder ao website.
+
+![T1](images/L/Screenshot%202022-01-21%20at%2016.17.19.png)
